@@ -4,6 +4,14 @@ export const daysInMonth = (date) => {
     return new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
 }
 
+const removeExtraRow = (matrix) => {
+    matrix.forEach((row,index) => {
+        if(parseInt(row.join('')) === 0){
+            matrix.splice(index,1);
+        }
+    });
+}
+
 export const getDatesMatrix = (date) => {
     const numOfDaysInMonth = daysInMonth(date);
     const firstDay = (new Date(date.getFullYear(), date.getMonth(), 1)).getDay();
@@ -13,5 +21,6 @@ export const getDatesMatrix = (date) => {
         let k = p%7;
         dateMatrix[j][k] = q ;
     }
+    removeExtraRow(dateMatrix)
     return dateMatrix;
 }
